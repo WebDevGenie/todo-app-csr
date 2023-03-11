@@ -17,6 +17,30 @@ export default function Home() {
     { key: 2, task: "Eat", completed: false },
   ]);
 
+  // New Todo Holder
+  const [newTodo, setNewTodo] = useState<string>("");
+
+  // Change newTodo value when input is changed
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNewTodo(e.target.value);
+  };
+
+  // Handle adding of new todo
+  const handleAdd = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const newKey = todos.length + 1;
+    const newTask = newTodo.trim();
+    if (newTask !== "") {
+      const newTodoItem: ITodo = {
+        key: newKey,
+        task: newTask,
+        completed: false,
+      };
+      setTodos([...todos, newTodoItem]);
+      setNewTodo("");
+    }
+  };
+
   return (
     <>
       <Head>
@@ -27,6 +51,15 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <TodoList todos={todos} setTodos={setTodos} />
+        <form onSubmit={handleAdd}>
+          <input
+            placeholder="Add New Todo"
+            value={newTodo}
+            onChange={handleInputChange}
+          />
+          <br />
+          <button type="submit">Add</button>
+        </form>
       </main>
     </>
   );

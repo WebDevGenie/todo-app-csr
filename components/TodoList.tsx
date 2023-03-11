@@ -23,7 +23,7 @@ const TodoList: React.FC<ITodoListProps> = (props) => {
           <li key={todo.key} className="todo-item">
             {todo.task}
             <button type="button" onClick={() => handleRemove(todo.key)}>
-              X
+              Done
             </button>
           </li>
         );
