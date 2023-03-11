@@ -3,6 +3,7 @@ import styles from "@/styles/Home.module.css";
 import TodoList from "@/components/TodoList";
 import { useState } from "react";
 
+// Interface for TodoList
 export interface ITodo {
   key: number;
   task: string;
@@ -10,6 +11,7 @@ export interface ITodo {
 }
 
 export default function Home() {
+  // List of Todos
   const [todos, setTodos] = useState<ITodo[]>([
     { key: 1, task: "Clean", completed: false },
     { key: 2, task: "Eat", completed: false },

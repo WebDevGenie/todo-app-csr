@@ -1,11 +1,18 @@
 import React from "react";
 import { ITodo } from "@/pages";
 
-const TodoList: React.FC<ITodo> = (props) => {
+// Define 'todos' prop as an array of 'ITodo'
+interface ITodoListProps {
+  todos: ITodo[];
+  setTodos: (todos: ITodo[]) => void;
+}
+
+const TodoList: React.FC<ITodoListProps> = (props) => {
+  // Destructure props
   const { todos, setTodos } = props;
 
+  // Handle remove button
   function handleRemove(key: number) {
-    console.log(key);
     const updatedTodoList = todos.filter((todo) => todo.key !== key);
     setTodos(updatedTodoList);
   }
