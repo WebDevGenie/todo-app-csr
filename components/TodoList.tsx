@@ -12,23 +12,23 @@ const TodoList: React.FC<ITodoListProps> = (props) => {
   const { todos, setTodos } = props;
 
   // Handle remove button
-  function handleRemove(key: number) {
-    const updatedTodoList = todos.filter((todo) => todo.key !== key);
+  function handleRemove(id: string) {
+    const updatedTodoList = todos.filter((todo) => todo.id !== id);
     setTodos(updatedTodoList);
   }
   return (
-    <>
+    <ul className="todo-list">
       {todos.map((todo) => {
         return (
-          <li key={todo.key} className="todo-item">
+          <li key={todo.id} className="todo-item">
             {todo.task}
-            <button type="button" onClick={() => handleRemove(todo.key)}>
+            <button type="button" onClick={() => handleRemove(todo.id)}>
               Done
             </button>
           </li>
         );
       })}
-    </>
+    </ul>
   );
 };
 

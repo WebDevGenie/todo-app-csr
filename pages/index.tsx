@@ -2,10 +2,11 @@ import Head from "next/head";
 import styles from "@/styles/Home.module.css";
 import TodoList from "@/components/TodoList";
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 // Interface for TodoList
 export interface ITodo {
-  key: number;
+  id: string;
   task: string;
   completed: boolean;
 }
@@ -13,8 +14,8 @@ export interface ITodo {
 export default function Home() {
   // List of Todos
   const [todos, setTodos] = useState<ITodo[]>([
-    { key: 1, task: "Clean", completed: false },
-    { key: 2, task: "Eat", completed: false },
+    { id: "1", task: "Clean", completed: false },
+    { id: "2", task: "Eat", completed: false },
   ]);
 
   // New Todo Holder
@@ -28,11 +29,11 @@ export default function Home() {
   // Handle adding of new todo
   const handleAdd = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const newKey = todos.length + 1;
+    const newID = uuidv4();
     const newTask = newTodo.trim();
-    if (newTask !== "") {
+    if (newTask) {
       const newTodoItem: ITodo = {
-        key: newKey,
+        id: uuidv4(),
         task: newTask,
         completed: false,
       };
