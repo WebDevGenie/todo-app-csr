@@ -29,11 +29,11 @@ export default function Home() {
   // Handle adding of new todo
   const handleAdd = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const newID = uuidv4();
+    const newId = uuidv4();
     const newTask = newTodo.trim();
     if (newTask) {
       const newTodoItem: ITodo = {
-        id: uuidv4(),
+        id: newId,
         task: newTask,
         completed: false,
       };
